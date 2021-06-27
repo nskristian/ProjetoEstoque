@@ -7,5 +7,6 @@ namespace Projeto.Repository.Contracts
 {
     public interface IVendidoRepository : IBaseRepository<Vendido>
     {
+        List<Vendido> BuscarPorData(DateTime dataInicio, DateTime dataFim);
     }
 }
