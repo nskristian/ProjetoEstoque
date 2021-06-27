@@ -1,6 +1,6 @@
 ﻿create table Produto(
-	IdProduto		integer		identity(1,1),
-	Nome			nvarchar(150)	not null,
+	IdProduto		integer			identity(1,1),
+	Nome			nvarchar(150)	unique not null,
 	Preco			decimal(6,2)	not null,
 	primary key(IdProduto))
 
