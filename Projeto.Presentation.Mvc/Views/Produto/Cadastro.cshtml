@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "Cadastro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Cadastro de Produtos</h1>
+
+Preencha o formulário abaixo para realizar o cadastro.
+<br />
+<br />
+
+<form>
+
+    <label>Nome do Produto:</label>
+    <input type="text" class="form-control col-md-4"
+           placeholder="Nome" />
+    <br />
+
+    <label>Preço:</label>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">R$</span>
+            <span class="input-group-text">0,00</span>
+        </div>
+        <input type="text" class="form-control col-md-3">
+    </div>
+    <!--
+    <input type="text" class="form-control col-md-4"
+           placeholder="Preço" />
+        -->
+    <br />
+
+    <input type="submit" class="btn btn-success"
+           value="Realizar Cadastro" />
+
+</form>
+
+

@@ -10,13 +10,13 @@ namespace Projeto.Presentation.Mvc.Controllers
     public class ProdutoController : Controller
     {
         // GET: ProdutoController
-        public ActionResult Index()
+        public ActionResult Cadastro()
         {
             return View();
         }
 
         // GET: ProdutoController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Consulta()
         {
             return View();
         }

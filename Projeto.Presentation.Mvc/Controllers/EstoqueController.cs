@@ -10,13 +10,13 @@ namespace Projeto.Presentation.Mvc.Controllers
     public class EstoqueController : Controller
     {
         // GET: EstoqueController
-        public ActionResult Index()
+        public ActionResult Cadastro()
         {
             return View();
         }
 
         // GET: EstoqueController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Consulta()
         {
             return View();
         }
