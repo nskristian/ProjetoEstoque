@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Projeto.Presentation.Mvc.Models;
+using Projeto.Repository.Entities;
+using Projeto.Repository.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +15,31 @@ namespace Projeto.Presentation.Mvc.Controllers
         // GET: ProdutoController
         public ActionResult Cadastro()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Cadastro(ProdutoCadastroModel model, [FromServices] ProdutoRepository produtoRepository)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var produto = new Produto();
+                    produto.Nome = model.Nome;
+                    produto.Preco = model.Preco;
+
+                    produtoRepository.Create(produto);
+
+                    TempData["MensagemSucesso"] = "Produto cadastrado com sucesso.";
+                    ModelState.Clear(); 
+
+                }
+                catch (Exception e)
+                {
+                    TempData["MensagemErro"] = "Erro: " + e.Message;
+                }
+            }
             return View();
         }
 

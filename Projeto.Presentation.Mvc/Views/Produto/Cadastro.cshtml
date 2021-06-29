@@ -1,4 +1,5 @@
-﻿
+﻿@model Projeto.Presentation.Mvc.Models.ProdutoCadastroModel
+
 @{
     ViewData["Title"] = "Cadastro";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,30 +11,44 @@ Preencha o formulário abaixo para realizar o cadastro.
 <br />
 <br />
 
-<form>
+<div class="text-danger">
+    @Html.ValidationSummary()
+</div>
+
+
+@using (Html.BeginForm())
+{
 
     <label>Nome do Produto:</label>
-    <input type="text" class="form-control col-md-4"
-           placeholder="Nome" />
+    @Html.TextBoxFor(model => model.Nome,
+    new
+    {
+        @class = "form-control col-md-4",
+        @placeholder = "Nome"
+    })
     <br />
 
     <label>Preço:</label>
+
     <div class="input-group mb-3">
         <div class="input-group-prepend">
             <span class="input-group-text">R$</span>
             <span class="input-group-text">0,00</span>
         </div>
-        <input type="text" class="form-control col-md-3">
+        @Html.TextBoxFor(model => model.Preco,
+    new
+    {
+        @class = "form-control col-md-3",
+        @placeholder = "Preço"
+    })
+        <!--<input type="text" class="form-control col-md-3">-->
     </div>
-    <!--
-    <input type="text" class="form-control col-md-4"
-           placeholder="Preço" />
-        -->
+
     <br />
 
     <input type="submit" class="btn btn-success"
            value="Realizar Cadastro" />
 
-</form>
+}
 
 

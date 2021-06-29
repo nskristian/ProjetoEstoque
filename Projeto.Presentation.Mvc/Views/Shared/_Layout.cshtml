@@ -53,35 +53,32 @@
                 </ul>
             </div>
         </nav>
-        <!--
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Controle de estoque</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Estoque" asp-action="Index">Estoque</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Produto" asp-action="Index">Produtos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Vendido" asp-action="Index">Vendidos</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-        -->
+        
     </header>
     <div class="container">
         <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+            @if (TempData["MensagemSucesso"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>@TempData["MensagemSucesso"]</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+
+        @if (TempData["MensagemErro"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>@TempData["MensagemErro"]</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+
+                     @RenderBody()
+            </main>
     </div>
 
     <footer class="border-top footer text-muted">
@@ -93,7 +90,8 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
-    <script src="~/js/bootstrap.js"></script>
     <script src="~/js/jquery-3.6.0.min.js"></script>
+    <script src="~/js/bootstrap.js"></script>
+    
 </body>
 </html>
