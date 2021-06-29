@@ -11,3 +11,7 @@ x64/
 [Oo]bj/
 # build folder is nowadays used for build scripts and should not be ignored
 #build/
+*.v2
+.vs/ProjetoEstoque/v16/.suo
+Projeto.Presentation.Mvc/appsettings.json
+*.cache
