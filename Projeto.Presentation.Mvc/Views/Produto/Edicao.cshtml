@@ -1,16 +1,12 @@
-﻿@model Projeto.Presentation.Mvc.Models.ProdutoCadastroModel
-
+﻿@model Projeto.Presentation.Mvc.Models.ProdutoEdicaoModel
 @{
-    ViewData["Title"] = "Cadastro";
+    ViewData["Title"] = "Edicao";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Cadastro de Produtos</h1>
-
-Preencha o formulário abaixo para realizar o cadastro.
+<h1>Atualizar Produto</h1>
 <br />
 <br />
-
 <div class="text-danger">
     @Html.ValidationSummary()
 </div>
@@ -18,7 +14,7 @@ Preencha o formulário abaixo para realizar o cadastro.
 
 @using (Html.BeginForm())
 {
-
+    @Html.HiddenFor(model => model.IdProduto)
     <label>Nome do Produto:</label>
     @Html.TextBoxFor(model => model.Nome,
     new
@@ -46,8 +42,6 @@ Preencha o formulário abaixo para realizar o cadastro.
     <br />
 
     <input type="submit" class="btn btn-success"
-           value="Realizar Cadastro" />
+           value="Atualizar" />
 
 }
-
-

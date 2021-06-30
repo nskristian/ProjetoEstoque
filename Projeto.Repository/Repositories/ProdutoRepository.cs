@@ -75,17 +75,26 @@ namespace Projeto.Repository.Repositories
             }
         }
 
-        // TODO
-        public List<Produto> BuscarPeloNome(string nome)
+        
+        public Produto GetByName(string nome)
         {
+            var query = "Select * from Produto where Nome = @Nome";
 
+            using (var connection = new SqlConnection(connectionString))
+            {
+                return connection.QueryFirstOrDefault<Produto>
+                    (query, new { Nome = nome });
+            }
+        }
+
+        public List<Produto> GetByNameLike(string nome)
+        {
             var query = "Select * from Produto where Nome Like '%@nome%' order by nome ASC";
 
             using (var connection = new SqlConnection(connectionString))
             {
                 return connection.Query<Produto>(query).ToList();
             }
-
         }
     }
 }

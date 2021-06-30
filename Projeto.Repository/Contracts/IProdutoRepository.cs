@@ -7,6 +7,7 @@ namespace Projeto.Repository.Contracts
 {
     public interface IProdutoRepository : IBaseRepository<Produto>
     {
-        List<Produto> BuscarPeloNome(string nome);
+        Produto GetByName(string nome);
+        List<Produto> GetByNameLike(string nome);
     }
 }

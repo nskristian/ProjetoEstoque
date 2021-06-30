@@ -19,3 +19,8 @@ Projeto.Presentation.Mvc/appsettings.json
 Projeto.Presentation.Mvc/appsettings.json
 Projeto.Presentation.Mvc/obj/Debug/netcoreapp3.1/Projeto.Presentation.Mvc.csprojAssemblyReference.cache
 *.cache
+*.v2
+.vs/ProjetoEstoque/v16/.suo
+Projeto.Presentation.Mvc/appsettings.json
+*.cache
+*.cache

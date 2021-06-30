@@ -23,8 +23,8 @@
             <td>@item.Nome</td>
             <td>R$@item.Preco.ToString("F2")</td>
             <td>
-                <a href="#" class="btn btn-primary btn-sm">Atualizar</a>
-                <a href="#" class="btn btn-danger btn-sm">Excluir</a>
+                <a asp-controller="Produto" asp-action="Edicao" asp-route-id="@item.IdProduto" class="btn btn-primary btn-sm">Atualizar</a>
+                <a asp-controller="Produto" asp-action="Exclusao" asp-route-id="@item.IdProduto" class="btn btn-danger btn-sm" onclick="return confirm('Deseja realmente excluir o produto @item.Nome ?')">Excluir</a>
             </td>
         </tr>
         }

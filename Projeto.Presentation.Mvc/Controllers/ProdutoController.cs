@@ -26,6 +26,10 @@ namespace Projeto.Presentation.Mvc.Controllers
             {
                 try
                 {
+                    if (produtoRepository.GetByName(model.Nome) != null)
+                    {
+                        throw new Exception("Produto já existe.");
+                    }
                     var produto = new Produto();
                     produto.Nome = model.Nome;
                     produto.Preco = model.Preco;
@@ -59,67 +63,78 @@ namespace Projeto.Presentation.Mvc.Controllers
             return View(produtos);
         }
 
-        // GET: ProdutoController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: ProdutoController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        
+        public ActionResult Exclusao(int id, [FromServices] ProdutoRepository produtoRepository)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var produto = produtoRepository.GetById(id);
+                
+                if(produto != null)
+                {
+                    produtoRepository.Delete(produto);
+
+                    TempData["MensagemSucesso"] = "Produto excluído com sucesso.";
+                }
+                else
+                {
+                    throw new Exception("Produto não encontrado.");
+                }
             }
-            catch
+            catch(Exception e)
             {
-                return View();
+                TempData["MensagemErro"] = "Erro: " + e.Message;
             }
+            return RedirectToAction("Consulta");
         }
 
-        // GET: ProdutoController/Edit/5
-        public ActionResult Edit(int id)
+        
+        public ActionResult Edicao(int id, [FromServices] ProdutoRepository produtoRepository)
         {
-            return View();
+            var model = new ProdutoEdicaoModel();
+
+            try
+            {
+                var produto = produtoRepository.GetById(id);
+
+                model.IdProduto = produto.IdProduto;
+                model.Nome = produto.Nome;
+                model.Preco = produto.Preco.ToString("F2");
+            }
+            catch (Exception e)
+            {
+                TempData["MensagemErro"] = "Erro: " + e.Message;
+            }
+            return View(model);
         }
+
 
         // POST: ProdutoController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edicao(ProdutoEdicaoModel model, [FromServices] ProdutoRepository produtoRepository)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    var produto = new Produto();
+
+                    produto.IdProduto = model.IdProduto;
+                    produto.Nome = model.Nome;
+                    produto.Preco = double.Parse(model.Preco);
+
+                    produtoRepository.Update(produto);
+
+                    TempData["MensagemSucesso"] = "Produto atualizado com sucesso.";
+                }
+                catch(Exception e)
+                {
+                    TempData["MensagemErro"] = "Erro: " + e.Message;
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Consulta");
         }
 
-        // GET: ProdutoController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: ProdutoController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
