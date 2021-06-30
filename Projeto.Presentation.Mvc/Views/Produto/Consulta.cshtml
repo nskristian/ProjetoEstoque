@@ -1,4 +1,5 @@
-﻿
+﻿@model List<Projeto.Repository.Entities.Produto>
+
 @{
     ViewData["Title"] = "Consulta";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -16,18 +17,21 @@
         </tr>
     </thead>
     <tbody>
+        @foreach (var item in Model)
+        {
         <tr>
-            <td></td>
-            <td></td>
+            <td>@item.Nome</td>
+            <td>R$@item.Preco.ToString("F2")</td>
             <td>
                 <a href="#" class="btn btn-primary btn-sm">Atualizar</a>
                 <a href="#" class="btn btn-danger btn-sm">Excluir</a>
             </td>
         </tr>
+        }
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="4">Quantidade total de produtos: 0</td>
+            <td colspan="4">Quantidade total de produtos: @Model.Count()</td>
         </tr>
     </tfoot>
 </table>

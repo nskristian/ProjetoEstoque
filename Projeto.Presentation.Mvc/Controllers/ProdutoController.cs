@@ -12,13 +12,14 @@ namespace Projeto.Presentation.Mvc.Controllers
 {
     public class ProdutoController : Controller
     {
-        // GET: ProdutoController
+        
         public ActionResult Cadastro()
         {
             return View();
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Cadastro(ProdutoCadastroModel model, [FromServices] ProdutoRepository produtoRepository)
         {
             if (ModelState.IsValid)
@@ -43,10 +44,19 @@ namespace Projeto.Presentation.Mvc.Controllers
             return View();
         }
 
-        // GET: ProdutoController/Details/5
-        public ActionResult Consulta()
+        
+        public ActionResult Consulta([FromServices] ProdutoRepository produtoRepository)
         {
-            return View();
+            var produtos = new List<Produto>();
+            try
+            {
+                produtos = produtoRepository.GetAll();
+            }
+            catch(Exception e)
+            {
+                TempData["MensagemErro"] = "Erro: " + e.Message;
+            }
+            return View(produtos);
         }
 
         // GET: ProdutoController/Create
