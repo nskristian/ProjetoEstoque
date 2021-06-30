@@ -24,3 +24,8 @@ Projeto.Presentation.Mvc/obj/Debug/netcoreapp3.1/Projeto.Presentation.Mvc.csproj
 Projeto.Presentation.Mvc/appsettings.json
 *.cache
 *.cache
+.vs/ProjetoEstoque/DesignTimeBuild/.dtbcache.v2
+.vs/ProjetoEstoque/v16/.suo
+Projeto.Presentation.Mvc/appsettings.json
+Projeto.Presentation.Mvc/obj/Debug/netcoreapp3.1/Projeto.Presentation.Mvc.csprojAssemblyReference.cache
+Projeto.Repository/obj/Debug/netcoreapp3.1/Projeto.Repository.csprojAssemblyReference.cache
